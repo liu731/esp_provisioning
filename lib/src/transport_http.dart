@@ -6,7 +6,7 @@ import 'package:string_validator/string_validator.dart';
 
 class TransportHTTP implements Transport {
   late String _hostname;
-  final Duration _timeout = const Duration(seconds: 10);
+  final Duration _timeout = const Duration(seconds: 30);
   Map<String, String> _headers = {};
   final _client = http.Client();
 
