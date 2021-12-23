@@ -24,11 +24,17 @@ public class EspProvisioningPlugin implements FlutterPlugin, MethodCallHandler {
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
+  private Cipher cipher;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "esp_provisioning");
     channel.setMethodCallHandler(this);
+  }
+
+  public static void registerWith(Registrar registrar) {
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "esp_provisioning");
+    channel.setMethodCallHandler(new EspSoftapProvisioningPlugin());
   }
 
   @Override
